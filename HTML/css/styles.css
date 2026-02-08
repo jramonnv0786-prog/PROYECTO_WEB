@@ -1,0 +1,203 @@
+/* --- Variables y Configuración Global --- */
+:root {
+    --bat-black: #0a0a0a;
+    --bat-dark-grey: #1a1a1a;
+    --bat-light-grey: #b0b0b0;
+    --bat-yellow: #ffed00; /* Amarillo intenso tipo señal */
+    --bat-blue-accent: #29465B; /* Un azul oscuro tipo noche de Gotham */
+    --alert-red: #d32f2f;
+    
+    --font-titles: 'Bebas Neue', cursive;
+    --font-body: 'Roboto', sans-serif;
+
+    --panel-border: 3px solid var(--bat-dark-grey);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bat-black);
+    color: var(--bat-light-grey);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    /* Un fondo sutil de ciudad estilo cómic o textura de papel viejo */
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v20H20v-0.5ZM0 22h20v2H0v-2zm0 4h20v2H0v-2zm0 4h20v2H0v-2zm0 4h20v2H0v-2z' fill='%23141414' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+/* --- Tipografía --- */
+h1, h2, h3 {
+    font-family: var(--font-titles);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.highlight-text {
+    color: var(--bat-yellow);
+    text-shadow: 2px 2px 0px #000;
+}
+
+/* --- Header / Hero --- */
+.hero {
+    background: linear-gradient(0deg, var(--bat-black) 0%, var(--bat-blue-accent) 100%);
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 5px solid var(--bat-yellow);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de "foco" de luz de gas */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,237,0,0.1) 0%, rgba(0,0,0,0) 60%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.bat-signal-icon svg {
+    width: 60px;
+    height: auto;
+    color: var(--bat-yellow);
+    filter: drop-shadow(0 0 10px var(--bat-yellow));
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin: 10px 0;
+    text-shadow: 3px 3px 0px #000;
+}
+
+/* --- Layout Principal --- */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.intro-text {
+    margin-bottom: 40px;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.intro-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+/* --- Dashboard Grid (Responsivo) --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+/* --- Estilo "Panel de Cómic" --- */
+.comic-panel {
+    background-color: #121212;
+    border: var(--panel-border);
+    padding: 25px;
+    /* Sombra dura estilo cómic */
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.5);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.comic-panel:hover {
+    transform: translateY(-5px);
+    border-color: var(--bat-yellow);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--bat-dark-grey);
+    padding-bottom: 10px;
+}
+
+.panel-header h3 {
+    font-size: 1.8rem;
+}
+
+.panel-icon {
+    font-size: 1.5rem;
+    filter: grayscale(1);
+}
+
+/* Contenedores de gráficas para que Chart.js sea responsivo */
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin-bottom: 15px;
+}
+
+.panel-large {
+    grid-column: 1 / -1;
+}
+
+/* --- Selector de Años --- */
+.year-selector-container {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.year-selector-container label {
+    font-weight: 700;
+    color: var(--bat-yellow);
+    font-size: 1.1rem;
+}
+
+.year-selector-container select {
+    padding: 10px 15px;
+    background-color: var(--bat-dark-grey);
+    color: var(--bat-yellow);
+    border: 2px solid var(--bat-yellow);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.year-selector-container select:hover {
+    background-color: #262626;
+    box-shadow: 0 0 10px rgba(255, 237, 0, 0.3);
+}
+
+.year-selector-container select:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(255, 237, 0, 0.5);
+}
+
+.year-selector-container select option {
+    background-color: var(--bat-dark-grey);
+    color: var(--bat-yellow);
+}
+
+.chart-note {
+    font-size: 0.9rem;
+    color: var(--bat-light-grey);
+    font-style: italic;
+    margin-top: 10px;
+}

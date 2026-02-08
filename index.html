@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Caballero Oscuro | Wayne Enterprises</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        
+        /* --- Variables Globales --- */
+        :root {
+            --bat-black: #0a0a0a;
+            --bat-dark-grey: #1a1a1a;
+            --bat-light-grey: #b0b0b0;
+            --bat-yellow: #ffed00;
+            --bat-blue-accent: #29465B;
+            --alert-red: #d32f2f;
+            
+            --font-titles: 'Bebas Neue', cursive;
+            --font-body: 'Roboto', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bat-black);
+            color: var(--bat-light-grey);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HERO LANDING --- */
+        .hero-landing {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f1f 100%);
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            background: url('https://images.unsplash.com/photo-1578591914162-7a46681b3c60?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8ZW58MHx8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat fixed;
+            filter: brightness(0.4) contrast(1.2);
+        }
+
+        /* Silueta de Batman - SVG */
+        .batman-silhouette {
+            display: none;
+            position: absolute;
+            width: 600px;
+            height: 750px;
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.4;
+            filter: drop-shadow(0 0 40px rgba(255, 237, 0, 0.3));
+            animation: silhouetteGlow 4s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        @keyframes silhouetteGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 20px rgba(255, 237, 0, 0.2));
+                opacity: 0.35;
+            }
+            50% {
+                filter: drop-shadow(0 0 50px rgba(255, 237, 0, 0.4));
+                opacity: 0.5;
+            }
+        }
+
+        /* Efecto de lluvia */
+        .rain-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 237, 0, 0.05) 10px,
+                rgba(255, 237, 0, 0.05) 20px
+            );
+            animation: rainMove 0.8s linear infinite;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        @keyframes rainMove {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+
+        /* Bat-Señal Glow */
+        .bat-signal-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 237, 0, 0.25) 0%, transparent 70%);
+            left: 10%;
+            top: 10%;
+            border-radius: 50%;
+            animation: signalPulse 3s ease-in-out infinite;
+            z-index: 1;
+            filter: blur(40px);
+        }
+
+        @keyframes signalPulse {
+            0%, 100% {
+                box-shadow: 0 0 40px rgba(255, 237, 0, 0.2),
+                            inset 0 0 40px rgba(255, 237, 0, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 80px rgba(255, 237, 0, 0.4),
+                            inset 0 0 60px rgba(255, 237, 0, 0.2);
+            }
+        }
+
+        /* Contenido Hero */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            padding: 40px;
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-family: var(--font-titles);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #fff;
+            text-shadow: 
+                0 0 20px rgba(255, 237, 0, 0.6),
+                0 0 40px rgba(255, 237, 0, 0.3),
+                3px 3px 0px #000;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 
+                    0 0 20px rgba(255, 237, 0, 0.6),
+                    0 0 40px rgba(255, 237, 0, 0.3),
+                    3px 3px 0px #000;
+            }
+            50% {
+                text-shadow: 
+                    0 0 40px rgba(255, 237, 0, 0.8),
+                    0 0 80px rgba(255, 237, 0, 0.5),
+                    3px 3px 0px #000;
+            }
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-titles);
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            color: var(--bat-yellow);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            animation: fadeInUp 1.2s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--bat-light-grey);
+            max-width: 600px;
+            margin: 30px auto 40px;
+            line-height: 1.8;
+            animation: fadeInUp 1.2s ease-out 0.4s both;
+            font-style: italic;
+        }
+
+        /* --- Selector de Cómics --- */
+        .comics-selector {
+            animation: fadeInUp 1.2s ease-out 0.6s both;
+            margin-top: 40px;
+        }
+
+        .selector-label {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--bat-yellow);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .comics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .comic-card {
+            position: relative;
+            overflow: hidden;
+            border: 3px solid var(--bat-yellow);
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(10, 10, 10, 0.9) 100%);
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 20px rgba(255, 237, 0, 0.2);
+        }
+
+        .comic-card:hover {
+            box-shadow: 0 0 40px rgba(255, 237, 0, 0.6);
+            transform: translateY(-8px);
+            background: linear-gradient(135deg, rgba(41, 70, 91, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%);
+        }
+
+        .comic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 237, 0, 0.2), transparent);
+            transition: left 0.5s ease;
+            z-index: 1;
+        }
+
+        .comic-card:hover::before {
+            left: 100%;
+        }
+
+        .comic-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .comic-emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .comic-title {
+            font-family: var(--font-titles);
+            font-size: 1.3rem;
+            color: var(--bat-yellow);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .comic-year {
+            font-size: 0.9rem;
+            color: var(--bat-light-grey);
+            margin-bottom: 15px;
+        }
+
+        .comic-sales {
+            font-size: 1rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            animation: fadeInUp 1s ease-out 1s both;
+            z-index: 10;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--bat-yellow);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .scroll-arrow {
+            font-size: 2rem;
+            color: var(--bat-yellow);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bat-black);
+            border-top: 3px solid var(--bat-yellow);
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--bat-light-grey);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-top: 60px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .batman-silhouette {
+                width: 400px;
+                height: 500px;
+                right: -50px;
+            }
+            
+            .comics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-landing {
+                height: auto;
+                min-height: 100vh;
+                padding: 40px 20px;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .batman-silhouette {
+                width: 250px;
+                height: 350px;
+                right: -50px;
+                opacity: 0.2;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Principal: El Caballero Oscuro -->
+    <header class="hero-landing">
+        <div class="hero-background">
+            <!-- Silueta de Batman -->
+            <svg class="batman-silhouette" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+                <!-- Cabeza con orejas características de murciélago -->
+                <g class="batman-head">
+                    <!-- Orejas izquierda y derecha -->
+                    <path d="M 120 80 Q 100 40 80 20 Q 85 60 70 100 Z" fill="#0a0a0a" stroke="#ffed00" stroke-width="2"/>
+                    <path d="M 280 80 Q 300 40 320 20 Q 315 60 330 100 Z" fill="#0a0a0a" stroke="#ffed00" stroke-width="2"/>
+                    
+                    <!-- Cabeza -->
+                    <circle cx="200" cy="120" r="60" fill="#1a1a1a" stroke="#ffed00" stroke-width="2"/>
+                    
+                    <!-- Máscara -->
+                    <ellipse cx="200" cy="120" rx="50" ry="45" fill="#0a0a0a" stroke="#ffed00" stroke-width="2"/>
+                    
+                    <!-- Ojos brillantes -->
+                    <circle cx="180" cy="110" r="8" fill="#ffed00"/>
+                    <circle cx="220" cy="110" r="8" fill="#ffed00"/>
+                </g>
+                
+                <!-- Cuerpo y capa -->
+                <g class="batman-cape">
+                    <!-- Capa izquierda -->
+                    <path d="M 150 180 Q 80 200 60 350 Q 70 400 100 450 L 150 420 Q 140 300 160 200 Z" fill="#0a0a0a" opacity="0.8"/>
+                    
+                    <!-- Capa derecha -->
+                    <path d="M 250 180 Q 320 200 340 350 Q 330 400 300 450 L 250 420 Q 260 300 240 200 Z" fill="#0a0a0a" opacity="0.8"/>
+                    
+                    <!-- Símbolo del murciélago en el pecho -->
+                    <g transform="translate(200, 250)">
+                        <path d="M 0 0 L -20 -15 L -25 5 L -15 10 L -20 25 L 0 15 L 20 25 L 15 10 L 25 5 L 20 -15 Z" fill="#ffed00" stroke="#000" stroke-width="1"/>
+                    </g>
+                </g>
+                
+                <!-- Detalles de armadura -->
+                <g class="batman-armor">
+                    <rect x="170" y="200" width="60" height="120" rx="10" fill="#1a1a1a" stroke="#ffed00" stroke-width="2" opacity="0.7"/>
+                </g>
+            </svg>
+
+            <!-- Efecto de lluvia de Gotham -->
+            <div class="rain-effect"></div>
+
+            <!-- Luz de fondo tipo Bat-Señal -->
+            <div class="bat-signal-glow"></div>
+        </div>
+
+        <!-- Contenido del Hero -->
+        <div class="hero-content">
+            <h1 class="hero-title">El Caballero Oscuro</h1>
+            <p class="hero-subtitle">La Leyenda de Gotham</p>
+            <p class="hero-description">
+                Selecciona un cómic para explorar su análisis de ventas y estadísticas de mercado.
+            </p>
+            
+            <div class="comics-selector">
+                <span class="selector-label">📚 Elige una Novela Gráfica</span>
+                <div class="comics-grid" id="comicsGrid"></div>
+            </div>
+        </div>
+
+        <!-- Indicador de scroll -->
+        <div class="scroll-indicator">
+            <span>Desplázate para más</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </header>
+
+    <!-- Sección de análisis -->
+    <section id="analysisSection" style="display: none; padding: 60px 20px; max-width: 1200px; margin: 0 auto;">
+        <iframe id="analysisFrame" src="" style="width: 100%; height: 100vh; border: none; border-radius: 10px;"></iframe>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 Wayne Enterprises. El Caballero Oscuro protege Gotham. | Acceso Restringido Nivel 5.</p>
+    </footer>
+
+    <script>
+        // Datos de cómics disponibles
+        const comics = [
+            {
+                title: "La Broma Asesina",
+                emoji: "🃏",
+                year: "1988",
+                sales: "2.5M copias",
+                description: "El clásico definitivo",
+                page: "HTML/index.html"
+            },
+            {
+                title: "Batman: Año Uno",
+                emoji: "🦇",
+                year: "1987",
+                sales: "1.8M copias",
+                description: "Los orígenes",
+                page: "HTML/index.html"
+            },
+            {
+                title: "El Regreso del Caballero Oscuro",
+                emoji: "🌙",
+                year: "1986",
+                sales: "2.1M copias",
+                description: "La revolución",
+                page: "HTML/index.html"
+            },
+            {
+                title: "Batman: Silencio",
+                emoji: "🤫",
+                year: "2003",
+                sales: "1.6M copias",
+                description: "Misterio y suspense",
+                page: "HTML/index.html"
+            },
+            {
+                title: "La Broma Asesina 2",
+                emoji: "🎭",
+                year: "2008",
+                sales: "1.4M copias",
+                description: "La continuación",
+                page: "HTML/index.html"
+            },
+            {
+                title: "Luz de Gas",
+                emoji: "💡",
+                year: "2020",
+                sales: "1.2M copias",
+                description: "Historia moderna",
+                page: "HTML/index.html"
+            }
+        ];
+
+        // Renderizar grid de cómics
+        function renderComicsGrid() {
+            const grid = document.getElementById('comicsGrid');
+            grid.innerHTML = comics.map((comic, index) => `
+                <div class="comic-card" onclick="selectComic(${index})">
+                    <div class="comic-content">
+                        <span class="comic-emoji">${comic.emoji}</span>
+                        <h3 class="comic-title">${comic.title}</h3>
+                        <p class="comic-year">${comic.year}</p>
+                        <p class="comic-sales">${comic.sales}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Seleccionar cómic y cargar análisis
+        function selectComic(index) {
+            const comic = comics[index];
+            const section = document.getElementById('analysisSection');
+            const frame = document.getElementById('analysisFrame');
+            
+            // Cambiar fuente del iframe
+            frame.src = comic.page;
+            section.style.display = 'block';
+            
+            // Scroll suave hacia la sección
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Efecto parallax
+        const silhouette = document.querySelector('.batman-silhouette');
+        const batSignalGlow = document.querySelector('.bat-signal-glow');
+        
+        window.addEventListener('mousemove', function(e) {
+            const moveX = (e.clientX / window.innerWidth) * 20;
+            const moveY = (e.clientY / window.innerHeight) * 20;
+            
+            silhouette.style.transform = `translateY(calc(-50% + ${moveY}px)) translateX(${moveX * 0.3}px)`;
+            batSignalGlow.style.left = `calc(10% + ${moveX * 0.5}px)`;
+            batSignalGlow.style.top = `calc(10% + ${moveY * 0.5}px)`;
+        });
+
+        // Inicializar
+        renderComicsGrid();
+
+        // Ocultar indicador de scroll cuando hay contenido debajo
+        window.addEventListener('scroll', function() {
+            const indicator = document.querySelector('.scroll-indicator');
+            if (window.scrollY > 100) {
+                indicator.style.opacity = '0';
+                indicator.style.pointerEvents = 'none';
+            } else {
+                indicator.style.opacity = '1';
+                indicator.style.pointerEvents = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
