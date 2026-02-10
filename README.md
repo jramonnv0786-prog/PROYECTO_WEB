@@ -43,11 +43,4 @@ Este proyecto no requiere instalación. Simplemente:
     git clone [https://github.com/tu-usuario/batman-web.git](https://github.com/tu-usuario/batman-web.git)
     ```
 2.  Abre el archivo `index.html` en tu navegador favorito.
-
-## Licencia
-
-Este proyecto es un fan-made y no está afiliado con DC Comics.
-Distribuido bajo la licencia MIT.
-
----
 Por Jose Ramón Neira Vega
