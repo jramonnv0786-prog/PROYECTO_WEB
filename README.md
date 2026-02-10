@@ -1,4 +1,4 @@
-# The Dark Knight Rises: Web Tributo a Batman
+# Tributo a la BROMA ASESINA, COMICS BATMAN
 
 ![Estado del Proyecto](https://img.shields.io/badge/Estado-Terminado-green)
 ![Tecnología](https://img.shields.io/badge/Tech-HTML%20%7C%20CSS%20%7C%20JS-blue)
