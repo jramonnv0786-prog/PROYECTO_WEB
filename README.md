@@ -27,10 +27,6 @@ Para construir este sitio, se utilizó un modelo de IA (puedes especificar aquí
 2.  **Prompt 2 (Estilo): Creación de una hoja de estilos CSS impactante, con paleta de colores negra/amarilla y efectos visuales.
 3.  **Prompt 3 (Detalles/Interacción):** Refinamiento del diseño, corrección de errores y añadido de interactividad básica con JavaScript.
 
-## Capturas de Pantalla
-
-*(Aquí puedes subir una imagen de tu web y poner el link, por ejemplo: `![Vista previa](./screenshot.png)`)*
-
 ## Tecnologías Utilizadas
 
 * **HTML5**
